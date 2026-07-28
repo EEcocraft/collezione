@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECOCRAFT · Collezioni</title>
+<style>
+  :root{
+    --cream: #fbf1de;
+    --cream-dark: #f3e2c2;
+    --brown: #5c3a21;
+    --brown-dark: #3f2712;
+    --terracotta: #b5472b;
+    --green: #6b7c4f;
+    --green-dark: #4d5c38;
+    --card-bg: rgba(255, 250, 240, 0.88);
+    --card-border: rgba(255,255,255,0.68);
+    --shadow: rgba(92,58,33,0.18);
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Georgia', 'Times New Roman', serif;
+    color:var(--brown-dark);
+    background:
+      radial-gradient(circle at top left, rgba(255,255,255,0.75), transparent 32%),
+      radial-gradient(circle at 90% 18%, rgba(224,178,58,0.24), transparent 18%),
+      radial-gradient(circle at 15% 85%, rgba(79,131,201,0.14), transparent 20%),
+      linear-gradient(180deg, #fdf7eb 0%, #f5e4c4 48%, #edd7b2 100%);
+    padding:clamp(16px, 3vw, 34px);
+  }
+
+  .shell{
+    width:min(1120px, 100%);
+    margin:0 auto;
+    display:grid;
+    gap:22px;
+  }
+
+  .hero,
+  .card,
+  .empty{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--card-border);
+    background:var(--card-bg);
+    backdrop-filter:blur(14px);
+    box-shadow:0 22px 50px -28px var(--shadow);
+  }
+
+  .hero::before,
+  .card::before,
+  .empty::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(145deg, rgba(255,255,255,0.34), transparent 55%);
+  }
+
+  .hero{
+    border-radius:28px;
+    padding:clamp(26px, 6vw, 46px);
+    text-align:center;
+  }
+
+  .eyebrow{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.62);
+    color:var(--terracotta);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:0.74rem;
+    font-weight:700;
+  }
+
+  h1{
+    margin:18px 0 12px;
+    font-size:clamp(1.9rem, 6vw, 3.4rem);
+    line-height:1.02;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  .hero p{
+    margin:0 auto;
+    max-width:44rem;
+    color:#6b5643;
+    line-height:1.7;
+    font-size:clamp(0.98rem, 2.2vw, 1.08rem);
+  }
+
+  .note{
+    margin-top:16px;
+    font-size:0.88rem;
+    color:#8a755f;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:18px;
+  }
+
+  .card{
+    border-radius:24px;
+    padding:22px 20px 20px;
+    display:grid;
+    gap:14px;
+  }
+
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start;
+  }
+
+  .badge{
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    background:linear-gradient(135deg, #ffd38b, #f0a94a 55%, #d9822f 100%);
+    display:grid;
+    place-items:center;
+    color:#fff;
+    font-weight:700;
+    font-size:1.05rem;
+    box-shadow:0 14px 28px -18px rgba(217,130,47,0.8);
+  }
+
+  .status{
+    align-self:center;
+    padding:7px 12px;
+    border-radius:999px;
+    background:rgba(107,124,79,0.12);
+    color:var(--green-dark);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:700;
+  }
+
+  .card h2{
+    margin:0;
+    font-size:1.35rem;
+    color:var(--brown-dark);
+  }
+
+  .card p{
+    margin:0;
+    color:#6b5643;
+    line-height:1.6;
+  }
+
+  .card a{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    width:max-content;
+    max-width:100%;
+    padding:12px 18px;
+    border-radius:999px;
+    background:linear-gradient(135deg, var(--green), var(--green-dark));
+    color:#fff;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:0.76rem;
+    font-weight:700;
+    box-shadow:0 14px 28px -20px rgba(77,92,56,0.95);
+  }
+
+  .empty{
+    border-radius:24px;
+    padding:24px;
+    text-align:center;
+    color:#6b5643;
+  }
+
+  .footer{
+    text-align:center;
+    font-size:0.82rem;
+    color:#947f6c;
+  }
+</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="eyebrow">Homepage collezioni</span>
+      <h1>Scegli la tua<br>collezione</h1>
+      <p>Apri la raccolta che vuoi completare e tieni traccia dei tuoi progressi in modo semplice e veloce.</p>
+      <p class="note" id="homeNote"></p>
+    </section>
+
+    <section class="grid" id="collectionsGrid"></section>
+    <section class="empty" id="emptyState" hidden>Nessuna collezione disponibile al momento.</section>
+
+    <p class="footer">ECOCRAFT · homepage dinamica delle collezioni</p>
+  </main>
+
+<script>
+  const collectionsGrid = document.getElementById('collectionsGrid');
+  const emptyState = document.getElementById('emptyState');
+  const homeNote = document.getElementById('homeNote');
+
+  function encodeParam(value){
+    return encodeURIComponent(String(value || '').trim());
+  }
+
+  function parseCollections(text){
+    const lines = String(text || '').split(/\r?\n/);
+    const collections = [];
+
+    lines.forEach((rawLine) => {
+      const line = rawLine.trim();
+      if(!line || line.startsWith('#')){
+        return;
+      }
+
+      const parts = line.split('|').map(part => part.trim());
+      if(parts.length < 3){
+        return;
+      }
+
+      collections.push({
+        path: parts[0],
+        title: parts[1],
+        description: parts[2],
+        badge: parts[3] || 'COL',
+        status: parts[4] || 'Disponibile'
+      });
+    });
+
+    return collections;
+  }
+
+  function buildLink(collection){
+    const separator = collection.path.includes('?') ? '&' : '?';
+    const params = [
+      `titolo=${encodeParam(collection.title)}`,
+      `descrizione=${encodeParam(collection.description)}`
+    ].join('&');
+    return `${collection.path}${separator}${params}`;
+  }
+
+  function renderCollections(collections){
+    collectionsGrid.innerHTML = '';
+
+    if(!collections.length){
+      emptyState.hidden = false;
+      return;
+    }
+
+    emptyState.hidden = true;
+
+    collections.forEach((collection) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="badge">${collection.badge}</div>
+          <span class="status">${collection.status}</span>
+        </div>
+        <div>
+          <h2>${collection.title}</h2>
+          <p>${collection.description}</p>
+        </div>
+        <a href="${buildLink(collection)}">Apri collezione</a>
+      `;
+      collectionsGrid.appendChild(card);
+    });
+  }
+
+  async function loadCollections(){
+    try{
+      const response = await fetch('./collezioni.txt', { cache: 'no-store' });
+      if(!response.ok){
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const text = await response.text();
+      const collections = parseCollections(text);
+      renderCollections(collections);
+      homeNote.textContent = '';
+    }catch(error){
+      renderCollections([]);
+      homeNote.textContent = 'Le collezioni non sono disponibili in questo momento.';
+      console.error('Errore caricamento collezioni:', error);
+    }
+  }
+
+  loadCollections();
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Formato: emoji|nome|rarita
+🐕|Cane Golden Retriever|comune
+🐸|Rana|comune
+🐻|Cane San Bernardo|raro
+🦁|Leone|ultra
+🦜|Pappagallo|raro
+🐰|Coniglio|comune
+🐷|Maialino|comune
+🦉|Gufo|raro
+🐻|Orso|comune
+🐕|Cane Carlino (Pug)|raro
+🐱|Gatto|comune
+🐹|Capibara|comune
+🐘|Elefante|ultra
+🦕|Dinosauro|comune
+🐭|Topolino|comune
+🐨|Koala|raro
+🐄|Mucca|comune
+🦏|Rinoceronte|comune
+🦡|Tasso|comune
+🦦|Lontra|comune
+🐰|Coniglio con carota|ultra
+🐿️|Scoiattolo|comune
+🐕|Cane Collie|raro
+🐢|Tartaruga|comune
+🦒|Giraffa|raro
+🦌|Cerbiatto|ultra
