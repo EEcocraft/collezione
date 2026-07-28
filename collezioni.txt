@@ -1,3 +1,2 @@
 # percorso-cartella|titolo|descrizione|badge|stato
-serie1/|Serie 1|Spunta tutti i modelli trovati e completa la prima raccolta ECOCRAFT.|01|Conclusa
-serie2/|Serie 2|Spunta tutti i modelli trovati e completa la prima raccolta ECOCRAFT.|02|Disponibile
+serie1/|Serie 1|Spunta tutti i modelli trovati e completa la prima raccolta ECOCRAFT.|01|In corso
